@@ -42,14 +42,19 @@ public class Application {
                 }
             }
 
-            if (lastPracticeClassType != null) {
-                final Practice lastPractice = lastPracticeClassType.newInstance();
-                lastPractice.run();
-            }
+            runPracticeByPracticeClassType(lastPracticeClassType);
 
         } catch (Exception e) {
             e.printStackTrace();
             return;
+        }
+    }
+
+    private static <T extends Practice> void runPracticeByPracticeClassType(final Class<T> classType) throws IllegalAccessException, InstantiationException {
+        if (classType != null) {
+            final Practice practice = classType.newInstance();
+            System.out.println(String.format("Start [%s] practice.", classType.getSimpleName()));
+            practice.run();
         }
     }
 }
