@@ -64,11 +64,15 @@ public class ClassLoadUtils {
      * @throws IOException getClassList()
      * @throws ClassNotFoundException getClassList()
      */
+    @SuppressWarnings({"unchecked"})
     public static <T> List<Class<T>> getClassListImplements(final String packageName, final Class<T> implementsClassType) throws IOException, ClassNotFoundException {
         final List<Class> classes = getClassList(packageName);
+
         return classes
                 .stream()
                 .filter(implementsClassType::isAssignableFrom)
+                // always c == Class<T>
+                .map(c -> (Class<T>)c)
                 .filter(c -> !c.isInterface())
                 .filter(c -> !Modifier.isAbstract(c.getModifiers()))
                 .collect(Collectors.toList());
