@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @KebronPractice(regDate = "2019-07-27 17:26")
 public class BirthdayChocolate extends HackerRankPractice {
 
-    private static String[][] inputs = {
+    private static final String[][] inputs = {
             // size, s, d m
             {"5", "1 2 1 3 2", "3 2"},
             {"6", "1 1 1 1 1 1", "3 2"},

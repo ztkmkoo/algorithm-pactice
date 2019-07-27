@@ -12,7 +12,7 @@ import java.util.List;
 @KebronPractice(regDate = "2019-07-27 18:43")
 public class DivisibleSumPairs extends HackerRankPractice {
 
-    private static String[][] inputs = {
+    private static final String[][] inputs = {
             // n k, ar
             {"6 3", "1 3 2 6 1 2"},
     };
