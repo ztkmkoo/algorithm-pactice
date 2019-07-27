@@ -1,6 +1,6 @@
 package com.ztkmkoo;
 
-import com.ztkmkoo.hackerrank.ClassLoadUtils;
+import com.ztkmkoo.util.ClassLoadUtils;
 import com.ztkmkoo.practice.KebronPractice;
 import com.ztkmkoo.practice.Practice;
 
@@ -20,11 +20,11 @@ public class Application {
         Class<? extends Practice> lastPracticeClassType = null;
 
         try {
-            final List<Class> practices = ClassLoadUtils.getClassListImplements("com.ztkmkoo", Practice.class);
+            final List<Class<Practice>> practices = ClassLoadUtils.getClassListImplements("com.ztkmkoo", Practice.class);
 
             final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            for (final Class cls : practices) {
-                final KebronPractice kebronPractice = KebronPractice.class.cast(cls.getAnnotation(KebronPractice.class));
+            for (final Class<Practice> cls : practices) {
+                final KebronPractice kebronPractice = cls.getAnnotation(KebronPractice.class);
                 if (kebronPractice == null)
                     continue;
 
@@ -46,7 +46,6 @@ public class Application {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return;
         }
     }
 
